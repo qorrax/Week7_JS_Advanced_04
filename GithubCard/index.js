@@ -51,5 +51,96 @@
     Using that array, iterate over it, requesting data for each user, creating a new card for each user, and adding that card to the DOM.
 */
 
+
+
+// create function with one object prameter and also create  Elements inside of the function 
+
+function createHubCard(data){
+
+  const MainDiv = document.createElement("div")
+     const userImage = document.createElement("img")
+     const cardDiv = document.createElement("div")
+         const userTitle = document.createElement("h3")
+         const userName = document.createElement("p")
+         const userLocation = document.createElement("p")
+         const userProfile = document.createElement("p")
+             const userLink = document.createElement("a")
+         const userFollowers = document.createElement("p")
+         const userFreinds = document.createElement("p")
+         const userBio = document.createElement("p")
+ 
+ 
+ 
+ 
+   // add data 
+ 
+ userImage.src= data.avatar_url;
+ userTitle.textContent = data.login;
+ userBio.textContent = "Bio : "   +   data.bio;
+ userLink.textContent = data.url;
+ userFollowers.textContent = " followers : " + data.followers;
+ userFreinds.textContent= "Following: "   +  data.following;
+ 
+ 
+ 
+ // add clasess
+ 
+ MainDiv.classList.add("card")
+ cardDiv.classList.add("card-info")
+ userTitle.classList.add("name")
+ userName.classList.add("userName")
+ 
+   // connecting all elements using (appenChild)
+ 
+ 
+ 
+   userProfile.appendChild(userLink)
+ 
+ 
+ cardDiv.appendChild(userTitle)
+ cardDiv.appendChild(userName)
+ cardDiv.appendChild(userLocation)
+ cardDiv.appendChild(userProfile)
+ cardDiv.appendChild(userFollowers)
+ cardDiv.appendChild(userFreinds)
+ cardDiv.appendChild(userBio)
+ 
+ MainDiv.appendChild(userImage)
+ MainDiv.appendChild(cardDiv)
+ 
+ 
+ return MainDiv
+ 
+ 
+ 
+ }
+ 
+ 
+ 
+  // call Api using Axios and connect the fucntion to the root element in the index.html
+ 
+ 
+ 
+ const entaryCards = document.querySelector(".cards")
+ 
+ 
+ 
+ 
+ 
+ 
+ axios.get(" https://api.github.com/users/qorrax")
+ .then(res => {
+   entaryCards.appendChild(createHubCard(res.data))
+ 
+ })
+ .catch(erro => {
+   console.log(erro)
+ });
+ 
+ 
+ 
+ 
+ 
+ 
 const followersArray = [];
 
